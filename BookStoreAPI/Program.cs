@@ -11,7 +11,7 @@ IConfiguration _configuration = new ConfigurationBuilder().AddJsonFile("appsetti
 
 //IConfiguration _configuration = builder.Configuration.GetSection("ConnectionStrings");
 
-builder.Services.AddControllers();
+builder.Services.AddControllers().AddNewtonsoftJson();
 
 builder.Services.AddTransient<IBookRepository, BooksRepository>();
 
@@ -19,7 +19,7 @@ builder.Services.AddDbContext<BookStoreContext>(options =>
     {
         options.UseSqlServer(_configuration.GetConnectionString("BookStoreDB"));
     });
-
+builder.Services.AddAutoMapper(typeof(Program));
 
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
