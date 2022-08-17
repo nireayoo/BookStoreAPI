@@ -20,7 +20,7 @@ namespace BookStoreAPI.Repository
         //i want to return the list of books available in a database
         public async Task<List<BookModel>> GetAllBooksAsync()
         {
-            /*var records = _context.Books.ToListAsync();*/ //we want to select our books directly from the book modrl
+            /*var records = _context.Books.ToListAsync();*/ //we want to select our books directly from the book model
             var records = await _context.Books.ToListAsync();
             return mapper.Map<List<BookModel>>(records);
         }

@@ -1,8 +1,10 @@
-﻿using Microsoft.EntityFrameworkCore;
+﻿using BookStoreAPI.Models;
+using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore;
 
 namespace BookStoreAPI.Data
 {
-    public class BookStoreContext: DbContext
+    public class BookStoreContext: IdentityDbContext<ApplicationUser>
     {
         public BookStoreContext(DbContextOptions<BookStoreContext> options): base(options)
         {
@@ -11,10 +13,6 @@ namespace BookStoreAPI.Data
 
         public DbSet<Books> Books { get; set; } //to estabish a comuncation with the database we use
 
-        protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
-        {
-            optionsBuilder.UseSqlServer();
-            base.OnConfiguring(optionsBuilder);
-        }
+       
     }
 }

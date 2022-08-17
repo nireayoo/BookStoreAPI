@@ -1,13 +1,16 @@
 ﻿using BookStoreAPI.Models;
 using BookStoreAPI.Repository;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.JsonPatch;
 using Microsoft.AspNetCore.Mvc;
+using Serilog;
 
 namespace BookStoreAPI.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
+    
     public class BooksController : ControllerBase
     {
         private readonly IBookRepository _bookRepository;
@@ -18,6 +21,7 @@ namespace BookStoreAPI.Controllers
             _bookRepository = bookRepository;
         }
         [HttpGet("")]
+        [Authorize]
         //creating an action method that will handle the incoming http request
 
         public async Task<IActionResult> GetAllBooks()
@@ -36,6 +40,8 @@ namespace BookStoreAPI.Controllers
                 return NotFound();
 
             }
+            Log.Warning("brbr");
+            Log.Error("bhbh");
             return Ok(book);
 
         }
